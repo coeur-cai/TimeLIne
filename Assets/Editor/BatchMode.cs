@@ -7,8 +7,8 @@ using UnityEditor;
 
 public class BatchMode {
     static List<string> levels = new List<string>();
-    [MenuItem("GameObject/BuildApk")]
-    public static void BuildAndroid()
+  
+    public static void BuildTimeDemoApk()
     {
         foreach (EditorBuildSettingsScene item in EditorBuildSettings.scenes)
         {
@@ -18,7 +18,7 @@ public class BatchMode {
             }
             levels.Add(item.path);
         }
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTarget.Android);
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         string res = BuildPipeline.BuildPlayer(levels.ToArray(), "TimeLine.apk", BuildTarget.Android, BuildOptions.None);
         if (res.Length>0)
         {
